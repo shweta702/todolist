@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $stmt->store_result();
-    
+
     if ($stmt->num_rows === 1) {
         $stmt->bind_result($id, $username, $hashed_password);
         $stmt->fetch();
@@ -30,20 +30,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body class="dark-theme">
     <div class="container">
-        <h2>Login</h2>
-        <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
-        <form method="POST">
-            <input type="email" name="email" placeholder="Email" required><br>
-            <input type="password" name="password" placeholder="Password" required><br>
-            <button type="submit">Login</button>
-        </form>
-        <p>No account? <a href="register.php">Register</a></p>
+        <div class="auth-page">
+            <div class="auth-container">
+                <h2>Login</h2>
+                <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+                <form method="POST">
+                    <input type="email" name="email" placeholder="Email" required><br>
+                    <input type="password" name="password" placeholder="Password" required><br>
+                    <button type="submit">Login</button>
+                </form>
+                <a href="register.php"> No account ? Register </a>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
